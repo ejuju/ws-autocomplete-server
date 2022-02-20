@@ -10,7 +10,7 @@ var t = initSuggestor() // t is a Suggestor, it returns suggestions (to complete
 
 //
 type Suggestor interface {
-	Suggest(str string, maxResults int) ([]string, error)
+	Suggest(str string, maxResults int) []string
 }
 
 func initSuggestor() Suggestor {
@@ -32,6 +32,6 @@ func initSuggestor() Suggestor {
 }
 
 //
-func End(str string, maxResults int) ([]string, error) {
+func End(str string, maxResults int) []string {
 	return t.Suggest(str, maxResults)
 }

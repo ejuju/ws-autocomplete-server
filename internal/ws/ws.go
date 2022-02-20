@@ -2,8 +2,8 @@ package ws
 
 import (
 	"fmt"
-	"log"
 	"net/http"
+	"strings"
 
 	"github.com/ejuju/ws-autocomplete-server/internal/suggest"
 	"github.com/gorilla/websocket"
@@ -17,15 +17,15 @@ var upgrader = websocket.Upgrader{
 
 // Serve upgrades the http request to use the websocket protocol and listens for incoming messages from the client
 func Serve(w http.ResponseWriter, r *http.Request) {
-
 	// Upgrade request to use websocket protocol
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		if _, ok := err.(websocket.HandshakeError); !ok {
-			log.Println("WS handshake error: ", err)
+		_, ok := err.(websocket.HandshakeError)
+		if ok {
+			fmt.Println("WS handshake error: ", err)
 			return
 		}
-		log.Println("Upgrade error: ", err)
+		fmt.Println("Upgrade error: ", err)
 		return
 	}
 	defer conn.Close()
@@ -34,23 +34,21 @@ func Serve(w http.ResponseWriter, r *http.Request) {
 	for {
 		_, msg, err := conn.ReadMessage()
 		if err != nil {
-			log.Println("an error occured when handling ws message", err)
+			fmt.Println("an error occured when handling ws message", err)
 			return
-		}
-
-		if len(msg) == 0 {
-			continue
 		}
 
 		str := string(msg)
-		fmt.Println(str)
+		results := suggest.End(str, 30)
 
-		results, err := suggest.End(str, 30)
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			return
+		// append input before result string
+		var withPrefix []string
+		for _, res := range results {
+			withPrefix = append(withPrefix, str+res)
 		}
 
-		fmt.Println(results)
+		fmtStr := strings.Join(withPrefix, "\n")
+
+		conn.WriteMessage(websocket.TextMessage, []byte(fmtStr))
 	}
 }
