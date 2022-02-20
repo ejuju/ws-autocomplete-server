@@ -5,11 +5,14 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/ejuju/ws-autocomplete-server/internal/ws"
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	router := mux.NewRouter().StrictSlash(false) // init multiplexer
+
+	router.HandleFunc("/", ws.Serve) // ws endpoint
 
 	server := http.Server{
 		Addr:              ":8080",

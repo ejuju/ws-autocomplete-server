@@ -1,2 +1,10 @@
+github.com/ejuju/trie v0.0.0-20220219233853-90a3c5e0d3bc h1:wNO9EqTrSBfc3CxI6e3nAwCuXU7Yxa9Bx6Kl03mg1F0=
+github.com/ejuju/trie v0.0.0-20220219233853-90a3c5e0d3bc/go.mod h1:tfyqSS43Ee3QUEAwOfp+HXl2QaenNMHMQsGJA5cZHDA=
+github.com/ejuju/trie v0.0.2 h1:0oC66gr5LYzSy+sHFaFmwjGxqV4mWRwIzXhFLCQNPNE=
+github.com/ejuju/trie v0.0.2/go.mod h1:tfyqSS43Ee3QUEAwOfp+HXl2QaenNMHMQsGJA5cZHDA=
+github.com/ejuju/trie v0.0.3 h1:z5oD13DxWML8vwpBqmwEe5l7izYlTMeenXk5fa2xyHQ=
+github.com/ejuju/trie v0.0.3/go.mod h1:kG9ZeL9XfnzhWMASUmO1nOGqpRan8+JjiLzDyZ2HoLQ=
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/gorilla/websocket v1.5.0 h1:PPwGk2jz7EePpoHN/+ClbZu8SPxiqlu12wZP/3sWmnc=
+github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
